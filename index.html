@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Stylesheet" href="styles.css"/>
+    <link rel="icon" href="./assets/icon.svg"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>ALICE PENG</title>
+</head>
+<body id="body">
+    <section id="outside">
+        <div class="about-me panel">
+            <div class="about-me-header panel-header">
+                <p>about alice</p>
+                <button onclick="showPanel('about-me')">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="about-me-content">
+                <div id="about-me-text">
+                    <p> Hello! My name is Alice. </p>
+                    <p> I am currently a second-year at the University of Toronto,
+                        studying Cognitive Science and Visual Studies. While I've 
+                        always been engaging with the arts, I have grown into someone
+                        who deeply enjoys the thinking and technicality digital systems
+                        and software requires. </p>
+                    
+                    <p> In my free time, I like to bake, swim, and play games. In fact,
+                        each year, I set New Years resolutions on what I'd like to
+                        achieve in my games, and I actually set out to finish them. </p>
+                    <a 
+                        href="https://www.figma.com/design/m7o8ADZlL0Lnk3IzUryxtu/portfolio?node-id=3002-5&t=M8rzlbipSpN7CFcq-1"
+                        target="_blank">
+                        design process for this site
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-panels">
+            <div class="zesty panel">
+                <div class="zesty-header panel-header">
+                    <p>zesty</p>
+                    <button onclick="showPanel('zesty')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="zesty-content">
+                    <h1> ZESTY is a project following the residents of ZESTYville.</h1>
+                    <p> After conjuring the franchise identity in 2024, I realized that 
+                        I wanted to develop ZESTY's design, branching its products from 
+                        beyond physical boxes and posters, and into the digital dimension. </p>
+                    <a href="https://zestyville.vercel.app/"> Check out ZESTY for yourself! </a>
+                    <img src="assets/zesty/zestyville (1).png"/>
+                    <img src="assets/zesty/zestyville (2).png"/>
+                    <img src="assets/zesty/zestyville (3).png"/>
+                    
+                </div>
+            </div>
+            <div class="exhibition panel">
+                <div class="exhibition-header panel-header">
+                    <p>2024 EXHIBITION</p>
+                    <button onclick="showPanel('exhibition')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="exhibition-content">
+                    <h1>Before web desiging, my creativity manifested in traditional work.</h1>
+                    <p>Here are some pieces from an exhibition:</p>
+                    <img src="assets/gallery/4. THIS IS WHAT HEAVEN LOOKS LIKE.jpg"/>
+                    <p>THIS IS WHAT HEAVEN LOOKS LIKE (2023)</p> 
+                    <img src="assets/gallery/5. My Heart is in the Childhood Bedroom.png"/>
+                    <p>My Heart is in the Childhood Bedroom (2023)</p> 
+                    <img src="assets/gallery/10. STAR GUIDED.jpg"/>
+                    <p> STAR GUIDED (2024)</p>
+                    <img src="assets/gallery/3. I don’t actually know if the orange is real, but if I believe it is, it might just be..jpg"/>
+                    <p>I don’t actually know if the orange is real, but if I believe it is, it might just be (2024)</p> 
+                    <img src="assets/gallery/2. Twenty-Five O'Clock.JPG"/>
+                    <p>Twenty-Five O'Clock (2023)</p> 
+                    <img src="assets/gallery/7. Portrait of Three Girls Making.jpg"/>
+                    <p>Portrait of Three Girls Making (2024)</p> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inside">
+        <div class="tab-contents">
+            <div class="content home-content active-content" data-content="1">
+                <h1 class="about-me-title" onclick="showPanel('about-me')" data-label="about me">Alice Peng</h1>
+                <p>designer, web developer</p>
+            </div>
+            <div class="content projects-content" data-content="2">
+                <div class="project zesty" onclick="showPanel('zesty')">
+                    <img src="assets/zesty/zesty.jpg"/>
+                    <span>ZESTY</span>
+                </div>
+                <div class="project exhibition" onclick="showPanel('exhibition')">
+                    <img src="assets/gallery/3. I don’t actually know if the orange is real, but if I believe it is, it might just be..jpg"/>
+                    <span>2024 EXHIBITION</span>
+                </div>
+            </div>
+            <div class="content contact-content" data-content="3">
+                <h1>thank you for coming!</h1>
+                <p onclick="copyEmail()">email</p>
+                <a href="https://github.com/aloceprng/" target="_blank" title="go to github!" alt="link to my github">github</a>
+                <a href="https://www.linkedin.com/in/alice-peishan-peng/" target="_blank" title="go to linkedin" alt="link to my linkedin">linkedin</a>
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tab active-tab" data-tab="1" data-label="home"> 
+                <i class="fa-regular fa-circle-user"></i>
+            </button>
+            <button class="tab" data-tab="2" data-label="projects"> 
+                <i class="fa-regular fa-file-image"></i>
+            </button>
+            <button class="tab" data-tab="3" data-label="contact me"> 
+                <i class="fa-regular fa-envelope"></i>
+            </button>
+        </div>
+    </section>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
