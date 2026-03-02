@@ -38,18 +38,15 @@
 }
 
 @font-face {
-    font-family: 'Chopin Script';
-    src: url('./assets/fonts/ChopinScript.otf') format('opentype');
-}
-
-@font-face {
     font-family: 'JRK';
-    src: url('./assets/fonts/JRK.otf') format('opentype');
+    src: url('./assets/fonts/JRK.woff2') format('woff2');
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Supreme-Regular';
-    src: url('./assets/fonts/Supreme-Regular.otf') format('opentype');
+    src: url('./assets/fonts/Supreme-Regular.woff2') format('woff2');
+    font-display: swap;
 }
 
 a {color: var(--accent-blue); 
