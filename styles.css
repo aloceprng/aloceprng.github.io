@@ -381,27 +381,26 @@ body {
         }
     }
 }
-    
+
 .cursor {
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 20px;
     height: 20px;
-    border-radius: var(--medium-br);
+    transform: translateY(-5rem);
     pointer-events: none;
     z-index: 888;
     
+    border-radius: var(--medium-br);
+
     color: var(--text-secondary);
     background: var(--accent-orange);
-
-    transform: translate(0rem, -5rem);
-    transition: left 0.05s, top 0.05s;
 
     &.expanded {
         width: auto;
         padding: 0 0.5rem;
-
         background-color: var(--accent-orange);
-
         animation: horizontal-load-in 0.25s linear;
     }
 }
