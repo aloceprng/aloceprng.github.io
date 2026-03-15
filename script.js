@@ -12,6 +12,10 @@ let targetTiltX = 50, targetTiltY = 50;
 
 const LERP = 0.12;
 
+let topZ = 10;
+
+function bringToFront(panel) {panel.style.zIndex = ++topZ;}
+
 document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -67,14 +71,29 @@ aboutMeTitle.addEventListener("mouseenter", () => setCursorLabel(aboutMeTitle.da
 aboutMeTitle.addEventListener("mouseleave", () => setCursorLabel(null));
 
 const dragState = new WeakMap();
+const maximizedPanels = new WeakSet();
 
 function showPanel(panelName) {
     const panel = document.querySelector("." + panelName);
     const isHidden = getComputedStyle(panel).display === "none";
 
-    panel.style.display = isHidden ? "block" : "none";
+    if (isHidden) {
+        panel.style.display = "block";
+        bringToFront(panel);
+        initDrag(panel);
+    } else {
+        if (maximizedPanels.has(panel)) {
+            maximizedPanels.delete(panel);
+            panel.style.position = "";
+            panel.style.top = "";
+            panel.style.left = "";
+            panel.style.width = "";
+            panel.style.height = "";
+            panel.style.zIndex = "";
+        }
 
-    if (isHidden) initDrag(panel);
+        panel.style.display = "none";
+    }
 }
 
 function initDrag(panel) {
@@ -87,6 +106,7 @@ function initDrag(panel) {
     let x1 = 0, y1 = 0;
 
     const onMove = (e) => {
+        if (maximizedPanels.has(panel)) return;
         e.preventDefault();
 
         const dx = x1 - e.clientX;
@@ -105,6 +125,18 @@ function initDrag(panel) {
     };
 
     header.addEventListener("mousedown", (e) => {
+        if (maximizedPanels.has(panel)) {
+            const rect = document.body.getBoundingClientRect();
+
+            maximizedPanels.delete(panel);
+            panel.style.position = "";
+            panel.style.width = "";
+            panel.style.height = "";
+            panel.style.top = `${(e.clientY - header.offsetTop) - rect.top }px`;
+            panel.style.left = `${(e.clientX - panel.offsetLeft) / 2}px`;
+        };
+        
+        bringToFront(panel);
         e.preventDefault();
 
         x1 = e.clientX;
@@ -113,6 +145,32 @@ function initDrag(panel) {
         document.addEventListener("mousemove", onMove);
         document.addEventListener("mouseup", onUp);
     });
+
+    panel.addEventListener("mousedown", (e) =>bringToFront(panel))
+}
+
+function maximizePanel(panelName) {
+    const panel = document.querySelector("." + panelName);
+    const isMaximized = maximizedPanels.has(panel);
+    const rect = document.body.getBoundingClientRect();
+
+    if (isMaximized) {
+        maximizedPanels.delete(panel);
+        panel.style.position = "";
+        panel.style.top = "";
+        panel.style.left = "";
+        panel.style.width = "";
+        panel.style.height = "";
+        panel.style.zIndex = "";
+    } else {
+        maximizedPanels.add(panel);
+        panel.style.position = "absolute";
+        panel.style.top = `${-rect.top}px`;
+        panel.style.left = `${-rect.left}px`;
+        panel.style.width = "100%";
+        panel.style.height = "100%";
+        panel.style.zIndex = "100";
+    }
 }
 
 let copyTimer = null;
